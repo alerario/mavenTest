@@ -36,10 +36,10 @@ public class GenericResource {
      * @return an instance of java.lang.String
      */
     @GET
-    @Produces(MediaType.APPLICATION_XML)
-    public String getXml() {
+    @Produces(MediaType.APPLICATION_JSON)
+    public Cliente getXml() {
         //TODO return proper representation object
-        return "<xml>um xml </xml>";
+        return new Cliente("alexandre");
     }
 
     /**

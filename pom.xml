@@ -21,13 +21,45 @@
         <version.payara>5.184</version.payara>
         <version.microprofile>2.2</version.microprofile>
     </properties>
+
     
+        <repositories>
+
+    <repository>
+
+        <id>mvn-repo</id>
+
+        <url>https://github.com/alerario/restinterface/tree/master/br/alerario/RestInterface</url>
+
+        <releases>
+
+            <enabled>true</enabled>
+
+        </releases>
+
+        <snapshots>
+
+            <enabled>true</enabled>
+
+        </snapshots>
+
+    </repository>
+
+</repositories>
+            
+                
+                        
     <dependencies>
         <dependency>
             <groupId>org.glassfish.metro</groupId>
             <artifactId>webservices-rt</artifactId>
             <version>2.3</version>
             <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>RestInterface</artifactId>
+            <version>${project.version}</version>
         </dependency>
         <dependency>
             <groupId>javax</groupId>
@@ -62,6 +94,28 @@
         </dependency>
     </dependencies>
 
-    
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>fish.payara.maven.plugins</groupId>
+                <artifactId>payara-micro-maven-plugin</artifactId>
+                <version>1.0.1</version>
+                <configuration>
+                    <payaraVersion>${version.payara}</payaraVersion>
+                    <deployWar>false</deployWar>
+                    <commandLineOptions>
+                        <option>
+                            <key>--autoBindHttp</key>
+                        </option>
+                        <option>
+                            <key>--deploy</key>
+                            <value>${project.build.directory}/${project.build.finalName}</value>
+                        </option>
+                    </commandLineOptions>
+                    <contextRoot>""</contextRoot>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 
 </project>
