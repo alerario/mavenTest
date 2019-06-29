@@ -5,6 +5,8 @@
  */
 package br.rest;
 
+import br.data.Cidade;
+import br.data.Cliente;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.UriInfo;
 import javax.ws.rs.Consumes;
@@ -39,7 +41,7 @@ public class GenericResource {
     @Produces(MediaType.APPLICATION_JSON)
     public Cliente getXml() {
         //TODO return proper representation object
-        return new Cliente("alexandre");
+        return new Cliente(1, "Alexandre", new Cidade(1, "Assis"));
     }
 
     /**

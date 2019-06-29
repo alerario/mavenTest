@@ -3,15 +3,25 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package br.rest;
+package br.data;
 
 /**
  *
- * @author utfpr
+ * @author alexandrelerario
  */
-public class Cliente implements br.restinterface.ICliente {
-
+public class Cidade implements br.alerario.ICidade{
+    private int codigo;
     private String nome;
+
+    @Override
+    public int getCodigo() {
+        return codigo;
+    }
+
+    @Override
+    public void setCodigo(int codigo) {
+        this.codigo = codigo;
+    }
 
     @Override
     public String getNome() {
@@ -23,11 +33,13 @@ public class Cliente implements br.restinterface.ICliente {
         this.nome = nome;
     }
 
-    public Cliente(String nome) {
+    public Cidade() {
+    }
+
+    public Cidade(int codigo, String nome) {
+        this.codigo = codigo;
         this.nome = nome;
     }
     
-            
-            
     
 }

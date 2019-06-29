@@ -23,29 +23,12 @@
     </properties>
 
     
-        <repositories>
-
-    <repository>
-
-        <id>mvn-repo</id>
-
-        <url>https://github.com/alerario/restinterface/tree/master/br/alerario/RestInterface</url>
-
-        <releases>
-
-            <enabled>true</enabled>
-
-        </releases>
-
-        <snapshots>
-
-            <enabled>true</enabled>
-
-        </snapshots>
-
-    </repository>
-
-</repositories>
+    <repositories>
+        <repository>
+            <id>alerario-repo</id>
+            <url>https:///raw.githubusercontent.com/alerario/javainterfaces/master/repositorio</url>
+        </repository>
+    </repositories>
             
                 
                         
@@ -56,11 +39,7 @@
             <version>2.3</version>
             <scope>provided</scope>
         </dependency>
-        <dependency>
-            <groupId>${project.groupId}</groupId>
-            <artifactId>RestInterface</artifactId>
-            <version>${project.version}</version>
-        </dependency>
+        
         <dependency>
             <groupId>javax</groupId>
             <artifactId>javaee-web-api</artifactId>
@@ -91,6 +70,11 @@
             <version>${version.microprofile}</version>
             <scope>provided</scope>
             <type>pom</type>
+        </dependency>
+         <dependency>
+            <groupId>alerario</groupId>
+            <artifactId>javainterfaces</artifactId>
+            <version>1.0</version>       
         </dependency>
     </dependencies>
 
