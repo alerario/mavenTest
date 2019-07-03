@@ -5,10 +5,13 @@
  */
 package br.data;
 
+import javax.xml.bind.annotation.XmlRootElement;
+
 /**
  *
  * @author alexandrelerario
  */
+@XmlRootElement(name="Cidade")
 public class Cidade implements br.alerario.ICidade{
     private int codigo;
     private String nome;
