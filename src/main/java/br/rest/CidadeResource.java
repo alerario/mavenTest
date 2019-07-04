@@ -9,6 +9,7 @@ import br.alerario.ICidade;
 import br.data.Cidade;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.util.ArrayList;
+import java.util.List;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.UriInfo;
 import javax.ws.rs.Consumes;
@@ -18,6 +19,7 @@ import static javax.ws.rs.HttpMethod.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PUT;
 import javax.ws.rs.POST;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.core.MediaType;
 
 /**
@@ -48,6 +50,20 @@ public class CidadeResource {
         return new br.data.CrudCidade().getAll();
     }
 
+    @GET
+    @Produces(MediaType.APPLICATION_JSON) 
+    @Path("/{id}")
+    public Cidade get(@PathParam("id") int codigo) {
+        List<Cidade> lcid = new br.data.CrudCidade().getAll();
+        Cidade cid = null;
+        for (Cidade cida : lcid) {
+            if (cida.getCodigo()==codigo) {
+                cid=cida;
+            }
+        }
+        return cid;
+    }
+    
     /**
      * PUT method for updating or creating an instance of CidadeResource
      * representation for the resource

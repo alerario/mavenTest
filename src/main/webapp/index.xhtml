@@ -8,9 +8,9 @@
     <h:body>
         Hello from Facelets
         <h:form>
-            <h:inputText value="#{jsfCidade.codigo}"/>
-            <h:inputText value="#{jsfCidade.nome}"/>
-            <h:commandButton action="#{jsfCidade.add()}" />
+            codigo: <h:inputText value="#{jsfCidade.codigo}"/> <br/>
+            nome: <h:inputText value="#{jsfCidade.nome}"/> <br/>
+            <h:commandButton action="#{jsfCidade.add()}" value="ADD"/>
         </h:form>
         
         
@@ -27,9 +27,9 @@
             </h:dataTable>
         </h:form>
     
+        <hr/>
+        <a href="/mavenTest-1.0-SNAPSHOT/webresources/application.wadl">WADL</a>
         
-      
-      
       
     </h:body>
 </html>
