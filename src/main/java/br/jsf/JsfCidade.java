@@ -7,6 +7,7 @@ package br.jsf;
 
 import br.data.entity.Cidade;
 import br.data.crud.CrudCidade;
+import com.mifmif.common.regex.Generex;
 import javax.inject.Named;
 import javax.enterprise.context.RequestScoped;
 
@@ -23,17 +24,15 @@ public class JsfCidade {
      */
     public JsfCidade() {
     }
-    
+
     private int codigo;
     private String nome;
-    
-    
-    
-    public java.util.ArrayList<Cidade> getAll(){
+
+    public java.util.ArrayList<Cidade> getAll() {
         return new CrudCidade().getAll();
     }
-    
-    public void add(){
+
+    public void add() {
         Cidade cid = new Cidade();
         cid.setCodigo(codigo);
         cid.setNome(nome);
@@ -55,6 +54,17 @@ public class JsfCidade {
     public void setNome(String nome) {
         this.nome = nome;
     }
-    
-    
+
+    public void addRandon() {
+
+        Generex generex = new Generex("[A-Z]{1}[a-z]*");
+        for (int i = 0; i < 5; i++) {
+            String nome = generex.random(5, 30);
+            int codigo = ((int) (Math.random() * 101));
+            Cidade cid = new Cidade();
+            cid.setCodigo(codigo);
+            cid.setNome(nome);
+            new CrudCidade().add(cid);
+        }
+    }
 }
