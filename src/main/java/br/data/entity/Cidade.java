@@ -3,18 +3,18 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package br.data;
+package br.data.entity;
 
-import br.alerario.ICidade;
+import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
  * @author alexandrelerario
  */
-public class Cliente implements br.alerario.ICliente{
+@XmlRootElement(name="Cidade")
+public class Cidade implements br.alerario.ICidade, java.io.Serializable{
     private int codigo;
     private String nome;
-    private ICidade cidade;
 
     @Override
     public int getCodigo() {
@@ -36,26 +36,13 @@ public class Cliente implements br.alerario.ICliente{
         this.nome = nome;
     }
 
-    @Override
-    public Cidade getCidade() {
-        return (Cidade) cidade;
+    public Cidade() {
     }
 
-    @Override
-    public void setCidade(ICidade cid) {
-        this.cidade = cidade;
-    }
-
-    public Cliente(int codigo, String nome, ICidade cidade) {
+    public Cidade(int codigo, String nome) {
         this.codigo = codigo;
         this.nome = nome;
-        this.cidade = cidade;
     }
-
-    public Cliente() {
-    }
-
-    
     
     
 }

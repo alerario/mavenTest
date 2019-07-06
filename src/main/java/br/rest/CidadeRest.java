@@ -6,8 +6,9 @@
 package br.rest;
 
 import br.alerario.ICidade;
-import br.data.Cidade;
+import br.data.entity.Cidade;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import javax.ws.rs.core.Context;
@@ -15,10 +16,9 @@ import javax.ws.rs.core.UriInfo;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.Produces;
 import javax.ws.rs.GET;
-import static javax.ws.rs.HttpMethod.POST;
+import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PUT;
-import javax.ws.rs.POST;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.core.MediaType;
 
@@ -28,7 +28,7 @@ import javax.ws.rs.core.MediaType;
  * @author alexandrelerario
  */
 @Path("cidade")
-public class CidadeResource {
+public class CidadeRest {
 
     @Context
     private UriInfo context;
@@ -36,7 +36,7 @@ public class CidadeResource {
     /**
      * Creates a new instance of CidadeResource
      */
-    public CidadeResource() {
+    public CidadeRest() {
     }
 
     /**
@@ -47,14 +47,14 @@ public class CidadeResource {
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public ArrayList<Cidade> get() {
-        return new br.data.CrudCidade().getAll();
+        return new br.data.crud.CrudCidade().getAll();
     }
 
     @GET
     @Produces(MediaType.APPLICATION_JSON) 
     @Path("/{id}")
     public Cidade get(@PathParam("id") int codigo) {
-        List<Cidade> lcid = new br.data.CrudCidade().getAll();
+        List<Cidade> lcid = new br.data.crud.CrudCidade().getAll();
         Cidade cid = null;
         for (Cidade cida : lcid) {
             if (cida.getCodigo()==codigo) {
@@ -68,11 +68,11 @@ public class CidadeResource {
      * PUT method for updating or creating an instance of CidadeResource
      * representation for the resource
      */
-    @PUT
+   /* @PUT
     @Consumes(MediaType.APPLICATION_JSON)
     public void put(br.alerario.ICidade cidade) {
         System.out.println("##### Estou no put com objeto ######");
-        new br.data.CrudCidade().add((Cidade) cidade);
+        new br.data.crud.CrudCidade().add((Cidade) cidade);
     }
 
     @PUT
@@ -83,9 +83,32 @@ public class CidadeResource {
         ObjectMapper objectMapper = new ObjectMapper();
         try {
             Cidade cid = objectMapper.readValue(texto, Cidade.class);
-            new br.data.CrudCidade().add((Cidade) cid);
+            new br.data.crud.CrudCidade().add((Cidade) cid);
         } catch (Exception e) {
             System.out.println("erro:::" + e.getMessage());
         }
     }
+*/
+    
+     @POST
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Path("/{cod}/{nome}")
+    public void post(@PathParam("cod") int cod, @PathParam("nome") String nome) {
+        Cidade cid = new Cidade(cod, nome);
+        new br.data.crud.CrudCidade().add(cid);
+    }
+
+    @POST    
+    @Consumes(MediaType.APPLICATION_JSON)
+    public void post(String cidade) {
+        ObjectMapper objectMapper = new ObjectMapper();
+        try {
+            
+            Cidade cid = objectMapper.readValue(cidade, Cidade.class);
+            new br.data.crud.CrudCidade().add(cid);
+        } catch (IOException e) {
+
+        }
+    }
+    
 }

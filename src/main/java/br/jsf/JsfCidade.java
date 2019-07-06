@@ -5,8 +5,8 @@
  */
 package br.jsf;
 
-import br.data.Cidade;
-import br.data.CrudCidade;
+import br.data.entity.Cidade;
+import br.data.crud.CrudCidade;
 import javax.inject.Named;
 import javax.enterprise.context.RequestScoped;
 
